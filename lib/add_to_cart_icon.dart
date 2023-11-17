@@ -46,44 +46,41 @@ class CartIconKey extends State<AddToCartIcon>
   @override
   Widget build(BuildContext context) {
     // Improvement/Suggestion 5 -> Implementing Cart with Badge
-    return Container(
-      width: 50,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          SlideTransition(
-            position: _offsetAnimation,
-            child: this.widget.icon,
-          ),
-          widget.badgeOptions.active
-              ? Positioned(
-                  left: 30,
-                  top: 5,
-                  child: Container(
-                    padding: EdgeInsets.all(2.0),
-                    width: widget.badgeOptions.width,
-                    height: widget.badgeOptions.height,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: widget.badgeOptions.backgroundColor ??
-                          Theme.of(context).colorScheme.secondary,
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        SlideTransition(
+          position: _offsetAnimation,
+          child: this.widget.icon,
+        ),
+        widget.badgeOptions.active
+            ? Positioned(
+                left: 30,
+                top: 5,
+                child: Container(
+                  padding: EdgeInsets.all(2.0),
+                  width: widget.badgeOptions.width,
+                  height: widget.badgeOptions.height,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: widget.badgeOptions.backgroundColor ??
+                        Theme.of(context).colorScheme.secondary,
+                  ),
+                  constraints: BoxConstraints(minWidth: 16, minHeight: 16),
+                  child: Text(
+                    _qtdeBadge,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: widget.badgeOptions.fontSize,
+                      color: widget.badgeOptions.foregroundColor,
                     ),
-                    constraints: BoxConstraints(minWidth: 16, minHeight: 16),
-                    child: Text(
-                      _qtdeBadge,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: widget.badgeOptions.fontSize,
-                        color: widget.badgeOptions.foregroundColor,
-                      ),
-                    ),
-                  ))
-              : const SizedBox(
-                  width: 0,
-                  height: 0,
-                ),
-        ],
-      ),
+                  ),
+                ))
+            : const SizedBox(
+                width: 0,
+                height: 0,
+              ),
+      ],
     );
   }
 
