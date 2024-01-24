@@ -160,7 +160,7 @@ class _AddToCartAnimationState extends State<AddToCartAnimation> {
 
     animationModel.showAnimation = true;
 
-    setState(() {});
+    if(mounted) setState(() {});
 
     await Future.delayed(Duration(milliseconds: 75));
 
@@ -168,7 +168,7 @@ class _AddToCartAnimationState extends State<AddToCartAnimation> {
     animationModel.duration =
         widget.jumpAnimation.duration; // This is for preview mode
     animationModel.animationActive = true; // That's start the animation.
-    setState(() {});
+    if(mounted) setState(() {});
 
     await Future.delayed(animationModel.duration);
     // Drag to cart animation
@@ -185,13 +185,13 @@ class _AddToCartAnimationState extends State<AddToCartAnimation> {
         this.widget.cartKey.currentContext!.size!.width,
         this.widget.cartKey.currentContext!.size!.height);
 
-    setState(() {});
+    if(mounted) setState(() {});
 
     await Future.delayed(animationModel.duration);
     animationModel.showAnimation = false;
     animationModel.animationActive = false;
 
-    setState(() {});
+    if(mounted) setState(() {});
 
     // Improvement/Suggestion 4.3: runCartAnimation is running independently, using gkCart.currentState(main.dart)
     // await this.widget.gkCart.currentState!.runCartAnimation();
